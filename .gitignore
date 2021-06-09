@@ -72,7 +72,7 @@ pytestdebug.log
 *.mo
 
 # Django stuff:
-.api_connect.py
+/accounts/.api_connect.py
 
 # Flask stuff:
 instance/
