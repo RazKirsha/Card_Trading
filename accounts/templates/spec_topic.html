@@ -1,0 +1,25 @@
+{% extends 'partials\base.html' %}
+
+{% block content %}
+    <h1>{{topic.title}}</h1>
+    <h2>{{topic.writer}}</h2>
+    <br>
+    <p>{{topic.content}}</p>
+    <h5>{{topic.date_written}}</h5>
+    <a class="btn btn-primary" href="{% url 'write_comment' topic.id %}">Add Comment</a>
+    <hr>
+    {% for comment in comments %}
+        <hr>
+        <h3>{{comment.title}}</h3>
+        <h4>{{comment.writer}}</h4>
+        <br>
+        <p>{{comment.content}}</p>
+        <h6>{{comment.date_written}}</h6>
+        {% if user.is_superuser %}
+            <a class="btn btn-danger" href="{% url 'delete_comment' comment.id %}">Delete</a>
+        {% endif %}
+    {% empty %}
+        <h3>No Comments Yet!</h3>
+    {% endfor %}
+
+{% endblock %}

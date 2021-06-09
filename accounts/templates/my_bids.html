@@ -1,0 +1,34 @@
+{% extends 'partials\base.html' %}
+{% load static %}
+{% load django_bootstrap5 %}
+
+{% block css %}
+<link rel="stylesheet" href="{% static 'css/cards.css'%}">
+{% endblock %}
+
+{% block content %}
+<h1>Bids that i have made</h1>
+<div class="wrapper">
+    {% for offer in data %}
+        <div class="card" style="width: 20rem;background-color:{{offer.card.color}};">
+            <div class="card-body">
+                <img src="{{offer.card.picture}}" alt="{{offer.card.name}}" style="width: 18rem; height: 120px">
+                <h3 class="card-title">{{offer.card.name}}</h3>
+                <h4 class="card-title">offer: <strong>{{offer.offered_price}}</strong></h4>
+                <p class="card-text">power: <strong>{{offer.card.power}}</strong></p>
+                <p class="card-text">Type: <strong>{{offer.card.type}}</strong></p>
+                <p class="card-text">Status: <strong>{{offer.bid_status}}</strong></p>
+                {% if offer.bid_status != 'Pending' %}
+                    <form method="post">
+                        {% csrf_token %}
+                        <input type='hidden' name='id' value={{ offer.id }}>
+                        <button type="submit" class="btn btn-primary">accept</button>
+                    </form>
+                {% endif %}
+            </div>
+        </div>
+    {% empty %}
+    <h3>Haven't made bids yet!</h3>
+    {% endfor %}
+</div>
+{% endblock %}

@@ -1,0 +1,51 @@
+{% extends 'partials\base.html' %}
+{% load static %}
+{% load django_bootstrap5 %}
+
+{% block css %}
+<link rel="stylesheet" href="{% static 'css/homepage.css'%}">
+{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h1>{{user.profile}} Profile</h1>
+
+    <hr>
+    <div class="user-data">
+        <div class="rank">
+            <p>Rank is the sum of all the card's powers.</p>
+            <h4>Rank: <strong>{{user.profile.rank}}</strong></h4>
+            <h4>Number of cards: <strong>{{ count }}</strong></h4>
+        </div>
+        <div class="vl"></div>
+        <form method="GET" class="search">
+            <h3 class="search-item">Search For Cards</h3>
+            {% bootstrap_form filter.form wrapper_class='col-12 offset-0 my-3' %}
+            <button type="submit" class="btn btn-primary search-item search-btn">search</button>
+        </form>
+        <hr>
+    </div>
+    <hr>
+    <div class="game-cards">
+        <div class="wrapper">
+            {% for card in filter.qs %}
+                <div class="card" style="width: 20rem;background-color:{{card.color}};">
+                    <div class="card-body">
+                        <img src="{{card.picture}}" alt="{{card.name}}" style="width: 18rem;">
+                        <h3 class="card-title">{{card.name}}</h3>
+                            <p class="card-text">Power: <strong>{{card.power}}</strong></p>
+                            <p class="card-text">Type: <strong>{{card.type}}</strong></p>
+                            <p class="card-text">Status: <strong>{{card.status}}</strong></p>
+                        <div class="bottom-part">
+                            <a type="button" class="btn btn-secondary reg" href="{{card.details}}">info</a>
+                            <a type="button" class="btn btn-primary" href="{% url 'change_status' card.id %}">change status</a>
+                        </div>
+                    </div>
+                </div>
+            {% empty %}
+                <p>No cards were found</p>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+{% endblock %}

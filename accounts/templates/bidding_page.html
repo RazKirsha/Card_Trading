@@ -1,0 +1,22 @@
+{% extends 'partials/base.html' %}
+{% load static %}
+{% load django_bootstrap5 %}
+
+{% block content %}
+    <h1>BID</h1>
+
+    <hr>
+
+    <h4><form method='post' enctype="multipart/form-data">
+
+        {% csrf_token %}
+
+        {% bootstrap_form form wrapper_class='col-4 offset-0 my-4' %}
+
+        
+        <button class="btn btn-primary" type='submit'>Bid</button>
+
+    </form></h4>
+
+
+{% endblock %}

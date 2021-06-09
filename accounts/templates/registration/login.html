@@ -1,0 +1,17 @@
+{% extends 'partials/base.html' %}
+
+{% load django_bootstrap5 %}
+
+{% block content %}
+
+    <h1>Login</h1>
+
+    <form method="POST">
+        {% csrf_token %}
+
+        {% bootstrap_form form wrapper_class='col-md-2 my-6' %}
+
+        <button class="btn btn-primary" type="submit">Login</button>
+    </form>
+
+{% endblock %}

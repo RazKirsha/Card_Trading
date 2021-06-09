@@ -1,0 +1,72 @@
+.carousel{
+   position: absolute;
+   line-height:1;
+   left:0;
+   min-width:100%;
+   min-height: 200px;
+   max-height: 400px;
+}
+
+.carousel-caption{
+    font-size: x-large;
+    color: white;
+    -webkit-text-stroke: 0.7px rgb(10, 10, 10);
+}
+
+.start-page{
+    display: flex;
+    margin-top: 32%;
+}
+
+.explain{
+    margin-bottom: 10px;
+}
+
+.user-data{
+    display: flex;
+}
+
+.explain-pic{
+    width: 20rem;
+    border-radius:10%;
+}
+
+.vl {
+  border-left: 1px solid grey;
+  height: 550px;
+  margin-right: 20px;
+  margin-left: 20px;
+}
+
+.search{
+    display:flex;
+    flex-direction: column;
+
+}
+
+.search-btn{
+    width: 90px;
+}
+
+.wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    margin-top: 20px;
+}
+
+.card{
+    margin-bottom: 10px;
+    border: 2px solid grey;
+}
+
+.card-body{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.reg{
+    width: 100px
+}

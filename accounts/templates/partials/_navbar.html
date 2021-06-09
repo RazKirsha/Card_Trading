@@ -1,0 +1,45 @@
+{% load static %}
+{% block css %}
+<link rel="stylesheet" href="{% static 'css/navbar.css'%}">
+{% endblock %}
+<nav class="navbar navbar-expand-lg navbar-light bg-{{user.profile.css_class}}">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="{% url 'homepage' %}">
+      {% if user.profile.profile_type == 'c' %}
+        <img src="{% static 'images/captain-america-icon.jpg' %}" alt="avengers_icon" width="70" height="70">
+      {% elif user.profile.profile_type == 't' %}
+        <img src="{% static 'images/thor.png' %}" alt="avengers_icon" width="70" height="70">
+      {% elif user.profile.profile_type == 'h' %}
+        <img src="{% static 'images/hulk.png' %}" alt="avengers_icon" width="70" height="70">
+      {% elif user.profile.profile_type == 'i' %}
+        <img src="{% static 'images/iron-man.jpg' %}" alt="avengers_icon" width="70" height="70">
+      {% endif %}
+    </a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        {% if user.is_authenticated %}
+          <li class="nav-item"><a class="nav-link" aria-current="page" href="{% url 'profile' %}">Profile</a></li>
+        <li class="nav-item"><a class="nav-link" aria-current="page" href="{% url 'forum' %}">Forum</a></li>
+        {% if user.is_superuser %}
+
+        {% else %}
+          <li class="nav-item"><a class="nav-link" aria-current="page" href="{% url 'my_sellings' %}">Selling</a></li>
+          <li class="nav-item"><a class="nav-link" aria-current="page" href="{% url 'my_bids' %}">Bids</a></li>
+          <span class="test">
+            <li class="nav-item"><a class="nav-link user-data" aria-current="page" href="">Coins: {{user.profile.coins}}</a></li>
+          </span>
+        {% endif %}
+        <li class="nav-item"><a class="nav-link" aria-current="page">Hello {{user.username}}</a></li>
+        <li class="nav-item"><a class="nav-link" aria-current="page" href="{% url 'logout' %}">Logout</a></li>
+        {% else %}
+        <li class="nav-item"><a class="nav-link" aria-current="page" href="{% url 'login' %}">Login</a></li>
+        <li class="nav-item"><a class="nav-link" aria-current="page" href="{% url 'signup' %}">Signup</a></li>
+        {% endif %}
+      </ul>
+    </div>
+  </div>
+</nav>

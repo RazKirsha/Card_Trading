@@ -1,0 +1,29 @@
+{% extends 'partials\base.html' %}
+{% load static %}
+{% load django_bootstrap5 %}
+
+{% block css %}
+<link rel="stylesheet" href="{% static 'css/cards.css'%}">
+{% endblock %}
+
+{% block content %}
+<h1>Bids for my cards</h1>
+<div class="wrapper">
+    {% for offer in data %}
+        <div class="card" style="width: 20rem;background-color:{{offer.card.color}};">
+            <div class="card-body">
+                <img src="{{offer.card.picture}}" alt="{{offer.card.name}}" style="width: 18rem; height: 120px;">
+                <h3 class="card-title">{{offer.card.name}}</h3>
+                <h4 class="card-title">offer: <strong>{{offer.offered_price}}</strong></h4>
+                <p class="card-text">power: <strong>{{offer.card.power}}</strong></p>
+                <p class="card-text">Type: <strong>{{offer.card.type}}</strong></p>
+                <a href="{% url 'accept_bid' offer.id %}" class="btn btn-primary">accept</a>
+                <a href="{% url 'decline_bid' offer.id %}" class="btn btn-danger">decline</a>
+            </div>
+        </div>
+    {% empty %}
+    <h3>No Bidding for your cards yet!</h3>
+    {% endfor %}
+</div>
+
+{% endblock %}
