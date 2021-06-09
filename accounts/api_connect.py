@@ -6,7 +6,7 @@ import random
 
 def create_card():
     public = "d826285d434dddb9a88bb49910818d40"
-    private = "28f9ac62fa2009ba154f05e6709068cdbe8f45d9"
+    private = "#A_private_key"
     ts = str(dt.now())
     my_string = ts + private + public
     hash_string = hashlib.md5(bytes(my_string, "utf-8")).hexdigest()
